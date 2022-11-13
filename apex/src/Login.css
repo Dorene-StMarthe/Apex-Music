@@ -1,5 +1,23 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;400;500&display=swap');
+
 body {
     
     background-image: url("./loginBackground.png");
     background-color: #1E517F;
+    font-family: 'Archivo', sans-serif;
+    color: white;
+    margin: 160px;
+}
+.appName {
+    font-size: 6.5em;
+    font-weight: 300;
+}
+.appSlogan {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+spotifyBtn {
+    position:absolute;
+    
 }
