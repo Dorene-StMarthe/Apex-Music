@@ -15,14 +15,18 @@ app.post('/refresh', (req,res)=> {
             clientSecret: '8fb1c261330c4d06a6720d4d85cb7ebb',
             refreshToken
         })
-        spotifyApi.refreshAccessToken().then(
-            (data) =>{
-              console.log(data.body)
-            }).catch(() => {
+    spotifyApi
+    .refreshAccessToken()
+    .then(data => {
+            res.json({
+                    accessToken: data.body.access_token,
+                    expiresIn: data.body.expires_in,
+                })
+            })
+              .catch(() => {
             res.sendStatus(400)
             })
         })
-       
 app.post('/login', (req, res) => {
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
@@ -36,11 +40,11 @@ spotifyApi.authorizationCodeGrant(code).then(data => {
     res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
-        expiresIn: data.body.expires_in
+        expiresIn: data.body.expires_in,
     })
 }).catch(err =>{
     console.log(err)
     res.sendStatus(400)
     })
 })
-app.listen(3001)
+app.listen(3000)
