@@ -45,41 +45,28 @@ class UserPlaylist extends Component {
       this.setState({ playlists: data.playlists });
     });
  }
+
   render () {
+  
     return (
       <>
-  <h1>Your Playlist</h1>
-   
-       <Card 
-       border="success" 
-       style={{ width: '35rem' }}>
-        <Card.Header style={{ backgroundColor: '#070D29'}}>
-        { this.state.playlists.map(playlists=> {
-          return (
-            <div>
-            <h3 key={playlists._id}> {playlists.playlistName}</h3>
-            </div>
-          )
-        })}
-        </Card.Header>
-        <Card.Body style={{ backgroundColor: '#070D29' }}>
-        { this.state.playlists.map(playlists=> {
-          return (
-            <div>
-            <h3 key={playlists._id}> {playlists.description}</h3>
-            </div>
-          )
-        })}
-          <Card.Title>Input a description</Card.Title>
-          <Card.Text>
-                <showSaveIcon/>
-          </Card.Text>
-        </Card.Body>
-        
-      </Card>
-      <br />
+  <h1>Your Playlists</h1>
+  <hr></hr>
+  <table>
+  <tbody>
+    { this.state.playlists.map(playlist => {
+        return (
+          <tr key={playlist._id} >
+            <td> {playlist.playlistName }</td>
+          </tr>
+        )
+      })
+    }
+  </tbody>
+</table>
+    
       </>
-  );
-}}
+    );}
+}
 
 export default UserPlaylist 

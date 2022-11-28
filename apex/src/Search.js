@@ -6,6 +6,8 @@ import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
 import UserPlaylist from "./UserPlaylist"
+import PlaylistForm from "./components/PlaylistForm"
+
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "5815ab60510246869757e2c94403ae45",
@@ -98,6 +100,8 @@ export default function Dashboard({ code }) {
     </Container>
     
     <UserPlaylist/>
+    <hr></hr>
+    <PlaylistForm/>
   </>
     
   )
