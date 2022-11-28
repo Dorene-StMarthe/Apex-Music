@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
 import Player from "./Player"
 import TrackSearchResult from "./TrackSearchResult"
-import { Card, Container, Form } from "react-bootstrap"
+import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
-
+import Playlist from "./Playlist"
 const spotifyApi = new SpotifyWebApi({
   clientId: "5815ab60510246869757e2c94403ae45",
 })
@@ -74,6 +74,7 @@ export default function Dashboard({ code }) {
   }, [search, accessToken])
 
   return (
+    <>
     <Container className="d-flex flex-column py-2" style={{ color: "cream", height: "50vh" }}>
       <Form.Control
         type="search"
@@ -90,11 +91,12 @@ export default function Dashboard({ code }) {
           />
         ))}
       </div>
-      
-
       <div>
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
     </Container>
+    <Playlist/>
+    </>
+    
   )
 }
