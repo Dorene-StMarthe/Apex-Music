@@ -8,10 +8,10 @@ const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=5815ab6051024
 export default function Login() {
     return (
         <>
-            <div>
+            
                 <p className="appName">APEX MUSIC</p>
                 <p className="appSlogan">MUSIC YOUR WAY</p>
-            </div>
+            
             <Container className="d-flex justify-content-center align-items-center">
                     <a className="btn btn-outline-info btn-lg" href= {AUTH_URL}>
                         SIGN IN WITH SPOTIFY
