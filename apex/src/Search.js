@@ -96,6 +96,7 @@ export default function Dashboard({ code }) {
       </div>
     </Container>
     <Playlist/>
+    <Playlist/>
     </>
     
   )
