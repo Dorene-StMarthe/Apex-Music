@@ -5,7 +5,7 @@ import Player from "./Player"
 import TrackSearchResult from "./TrackSearchResult"
 import SpotifyPlayer from "react-spotify-web-playback"
 import PlaylistForm from "./components/PlaylistForm"
-
+import './Login.css'
 
 let baseURL = ''
 
@@ -51,36 +51,69 @@ class UserPlaylist extends Component {
   const copyPlaylists = [...this.state.playlists]
   copyPlaylists.unshift(playlist)
   this.setState({
-    playlists: copyPlaylists,
+    playlists: copyPlaylists})
+}
+handleToggleFinished= (playlist) => {
+  fetch(baseURL + '/apex/' + playlist._id, {
+    method: 'PUT',
+    body: JSON.stringify({finished: !playlist.finished}),
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  }).then(res => res.json())
+  .then(resJson => {
+    console.log('resJson', resJson)
+       const copyPlaylists = [...this.state.playlists]
+        const findIndex = this.state.playlists.findIndex(playlist => playlist._id === resJson._id)
+        copyPlaylists[findIndex].finished = resJson.finished
+        this.setState({playlists: copyPlaylists})
   })
 }
 
+handleDeletePlaylist = (id) => {
+  fetch(baseURL + '/apex/' + id, {
+    method: 'DELETE'
+  }).then( response => {
+    const copyPlaylists = [...this.state.playlists]
+    const findIndex = this.state.playlists.findIndex(playlist => playlist._id === id)
+    copyPlaylists.splice(findIndex, 1)
+    this.setState({playlists: copyPlaylists})
+  })
+}
 
   render () {
   
     return (
-       <div className='UserPlaylist'>
-          <PlaylistForm handleAddPlaylist={this.handleAddPlaylist}/>
+      <div className='UserPlaylist'>
+        <PlaylistForm handleAddPlaylist={this.handleAddPlaylist}/>
       <br></br>
       <br></br>
-      <h1>Your Play</h1>
+        <h1>Your Play</h1>
       <hr></hr>
         <table>
           <tbody>
             { this.state.playlists.map(playlist => {
+              
               return (
-                <tr key={playlist._id} >
-            <td> {playlist.playlistName }</td>
-          </tr>
-        )
-      })
-    }
+                <tr key={playlist._id}>
+                  <td
+                    onDoubleClick={() => this.handleToggleFinished(playlist)}
+                    className={playlist.finished ? 'finished' : null}>
+                    {playlist.playlistName}</td>
+                    <tr>{playlist.description}</tr>
+                    <td onClick={()=>this.handleDeletePlaylist(playlist._id)}>
+                      ✖️ 
+                    </td>
+                </tr>
+                
+              )
+              
+        })}
   </tbody>
 </table>
-  
-   
       </div>
-    );}
+    )
+    ;}
 }
 
 export default UserPlaylist 
