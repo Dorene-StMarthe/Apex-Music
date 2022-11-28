@@ -4,6 +4,7 @@ import Dashboard from "./Search"
 import Player from "./Player"
 import TrackSearchResult from "./TrackSearchResult"
 import SpotifyPlayer from "react-spotify-web-playback"
+import PlaylistForm from "./components/PlaylistForm"
 
 
 let baseURL = ''
@@ -46,17 +47,29 @@ class UserPlaylist extends Component {
     });
  }
 
+ handleAddPlaylist = (playlist) => {
+  const copyPlaylists = [...this.state.playlists]
+  copyPlaylists.unshift(playlist)
+  this.setState({
+    playlists: copyPlaylists,
+  })
+}
+
+
   render () {
   
     return (
-      <>
-  <h1>Your Playlists</h1>
-  <hr></hr>
-  <table>
-  <tbody>
-    { this.state.playlists.map(playlist => {
-        return (
-          <tr key={playlist._id} >
+       <div className='UserPlaylist'>
+          <PlaylistForm handleAddPlaylist={this.handleAddPlaylist}/>
+      <br></br>
+      <br></br>
+      <h1>Your Play</h1>
+      <hr></hr>
+        <table>
+          <tbody>
+            { this.state.playlists.map(playlist => {
+              return (
+                <tr key={playlist._id} >
             <td> {playlist.playlistName }</td>
           </tr>
         )
@@ -64,8 +77,9 @@ class UserPlaylist extends Component {
     }
   </tbody>
 </table>
-    
-      </>
+  
+   
+      </div>
     );}
 }
 
