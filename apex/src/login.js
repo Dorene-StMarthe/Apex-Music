@@ -10,7 +10,7 @@ export default function Login() {
         <>
             
                 <p className="appName">APEX MUSIC</p>
-                <p className="appSlogan">MUSIC YOUR WAY</p>
+                <p className="appSlogan">MUSIC THAT MOVES YOU</p>
             
             <Container className="d-flex justify-content-center align-items-center">
                     <a className="btn btn-outline-info btn-lg" href= {AUTH_URL}>

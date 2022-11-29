@@ -32,7 +32,7 @@ class PlaylistForm extends Component {
   render () {
     return (
       <>
-        <h1>Create A Playlist</h1>
+        <h1>CREATE A REFLECTION</h1>
         <hr></hr>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="playlistName"></label>
@@ -41,8 +41,16 @@ class PlaylistForm extends Component {
                    name="playlistName" 
                    onChange={this.handleChange} 
                    value={this.state.playlistName} 
-                   placeholder="Name your playlist"/>
-            <input type="submit" value="Submit"/>
+                   placeholder="What are you listening too?"/><br></br>
+            <label htmlFor="description"></label>
+            <br></br>
+            <input type="text" 
+                   id="description" 
+                   name="description" 
+                   onChange={this.handleChange} 
+                   value={this.state.description} 
+                   placeholder="What are your thoughts?"/>    
+            <input type="submit" value="Submit" class="cursor-pointer"/>
           </form>
       </>
     )

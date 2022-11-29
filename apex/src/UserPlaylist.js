@@ -88,7 +88,7 @@ handleDeletePlaylist = (id) => {
         <PlaylistForm handleAddPlaylist={this.handleAddPlaylist}/>
       <br></br>
       <br></br>
-        <h1>Your Play</h1>
+        <h1>YOUR REFLECTIONS</h1>
       <hr></hr>
         <table>
           <tbody>
