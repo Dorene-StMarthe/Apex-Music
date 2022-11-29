@@ -24,3 +24,6 @@ spotifyBtn {
 .finished {
     color: #52CBBE;
 }
+.playlistName{
+    color: red;
+}

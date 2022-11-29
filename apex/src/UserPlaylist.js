@@ -82,39 +82,38 @@ handleDeletePlaylist = (id) => {
 }
 
   render () {
-  
     return (
       <div className='UserPlaylist'>
         <PlaylistForm handleAddPlaylist={this.handleAddPlaylist}/>
       <br></br>
       <br></br>
-        <h1>YOUR REFLECTIONS</h1>
+      <h1>YOUR REFLECTIONS</h1>
       <hr></hr>
         <table>
           <tbody>
             { this.state.playlists.map(playlist => {
-              
               return (
+                <>
                 <tr key={playlist._id}>
                   <td
                     onDoubleClick={() => this.handleToggleFinished(playlist)}
                     className={playlist.finished ? 'finished' : null}>
                     {playlist.playlistName}</td>
-                    
-                    <tr>{playlist.description}</tr>
+                  </tr>
+                    <td key= {playlist._id}>
+                    {playlist.description}
                     <td onClick={()=>this.handleDeletePlaylist(playlist._id)}>
                       ✖️ 
                     </td>
-                </tr>
-                
+                </td>
+                </>
               )
               
         })}
   </tbody>
 </table>
       </div>
-    )
-    ;}
+      )
+ }
 }
-
 export default UserPlaylist 

@@ -32,8 +32,8 @@ class PlaylistForm extends Component {
           console.log('PlaylistForm - resJson', resJson)
           this.props.handleAddPlaylist(resJson)
           this.setState({
-            playlistName: ''
-    
+            playlistName: '',
+            description:''
           })
       }).catch (error => console.error({'Error': error}))
     }
@@ -63,7 +63,7 @@ class PlaylistForm extends Component {
                    
             </textarea>
             <br></br>
-            <input type="submit" value="Submit" class="cursor-pointer"/>
+            <input type="submit" value="Submit" className="cursor-pointer"/>
             </form>
       </>
     )
