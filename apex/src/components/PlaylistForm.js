@@ -4,20 +4,26 @@ class PlaylistForm extends Component {
     constructor (props) {
         super(props)
         this.state = {
-          playlistName: ''}
+          playlistName: '',
+          description: ''
+        }
     }
     handleChange = (event) => {
       this.setState({
         playlistName: event.target.value
       })
     }
-
+    handleModify = (event) => {
+      this.setState({
+        description: event.target.value
+      })
+    }
  
     handleSubmit = (event) => {
       event.preventDefault()
       fetch('http://localhost:3001/apex', {
         method: 'POST',
-        body: JSON.stringify({playlistName: this.state.playlistName}),
+        body: JSON.stringify({playlistName: this.state.playlistName, description: this.state.description}),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -26,7 +32,9 @@ class PlaylistForm extends Component {
           console.log('PlaylistForm - resJson', resJson)
           this.props.handleAddPlaylist(resJson)
           this.setState({
-            playlistName: ''})
+            playlistName: ''
+    
+          })
       }).catch (error => console.error({'Error': error}))
     }
   render () {
@@ -42,16 +50,21 @@ class PlaylistForm extends Component {
                    onChange={this.handleChange} 
                    value={this.state.playlistName} 
                    placeholder="What are you listening too?"/><br></br>
-            <label htmlFor="description"></label>
-            <br></br>
-            <input type="text" 
+           
+            <br></br>  
+            
+          <label htmlFor="description"></label>
+            <textarea rows='4' cols='50' 
                    id="description" 
                    name="description" 
-                   onChange={this.handleChange} 
+                   onChange={this.handleModify} 
                    value={this.state.description} 
-                   placeholder="What are your thoughts?"/>    
+                   placeholder="What are your thoughts?">  
+                   
+            </textarea>
+            <br></br>
             <input type="submit" value="Submit" class="cursor-pointer"/>
-          </form>
+            </form>
       </>
     )
   }

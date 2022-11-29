@@ -74,8 +74,8 @@ handleDeletePlaylist = (id) => {
   fetch(baseURL + '/apex/' + id, {
     method: 'DELETE'
   }).then( response => {
-    const copyPlaylists = [...this.state.playlists]
     const findIndex = this.state.playlists.findIndex(playlist => playlist._id === id)
+    const copyPlaylists = [...this.state.playlists]
     copyPlaylists.splice(findIndex, 1)
     this.setState({playlists: copyPlaylists})
   })
@@ -100,6 +100,7 @@ handleDeletePlaylist = (id) => {
                     onDoubleClick={() => this.handleToggleFinished(playlist)}
                     className={playlist.finished ? 'finished' : null}>
                     {playlist.playlistName}</td>
+                    
                     <tr>{playlist.description}</tr>
                     <td onClick={()=>this.handleDeletePlaylist(playlist._id)}>
                       ✖️ 
